@@ -11,6 +11,8 @@ import createRoutes from 'routes/index'
 import { Provider } from 'react-redux'
 import Helmet from 'react-helmet'
 
+import { SignUpRoute } from './api/auth'
+
 let server = new Express()
 let port = process.env.PORT || 3000
 let scriptSrcs
@@ -45,7 +47,11 @@ if (process.env.NODE_ENV === 'production') {
 server.set('views', path.join(__dirname, 'views'))
 server.set('view engine', 'ejs')
 
-// mock apis
+// API
+
+server.post('/api/users', SignUpRoute)
+
+// mock apis DELETE AT SOME POINT
 server.get('/api/questions', (req, res)=> {
   let { questions } = require('./mock_api')
   res.send(questions)
