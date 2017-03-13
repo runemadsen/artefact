@@ -7,6 +7,7 @@ import Questions from 'components/Questions'
 import Helmet from 'react-helmet'
 
 class QuestionContainer extends Component {
+
   static fetchData({ store }) {
     return store.dispatch(loadQuestions())
   }
@@ -14,6 +15,7 @@ class QuestionContainer extends Component {
   componentDidMount() {
     this.props.loadQuestions()
   }
+  
   render() {
     return (
       <div>

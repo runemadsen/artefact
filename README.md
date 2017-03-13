@@ -2,6 +2,8 @@
 
 This is Artefact!
 
+From [this repo](https://github.com/mz026/universal-redux-template)
+
 - Install dependencies:
 `$ npm install`
 

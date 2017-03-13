@@ -7,10 +7,10 @@ class App extends Component {
     return (
       <div>
         <Helmet
-          defaultTitle="Redux real-world example"
-          titleTemplate="%s - Redux real-world example"
+          defaultTitle="Artefact"
+          titleTemplate="%s - Artefact"
           meta={[
-            {"name": "description", "content": "A boilerplate doing universal/isomorphic rendering with Redux + React-router + Express"},
+            {"name": "description", "content": "Artefact is awesome"},
           ]}
           htmlAttributes={{"lang": "en"}}
         />

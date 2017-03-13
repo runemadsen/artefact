@@ -1,19 +1,14 @@
 import Express from 'express'
 import path from 'path'
-
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { useRouterHistory, RouterContext, match } from 'react-router'
-
 import { createMemoryHistory, useQueries } from 'history'
 import compression from 'compression'
 import Promise from 'bluebird'
-
 import configureStore from 'store/configureStore'
 import createRoutes from 'routes/index'
-
 import { Provider } from 'react-redux'
-
 import Helmet from 'react-helmet'
 
 let server = new Express()
