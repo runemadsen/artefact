@@ -1,7 +1,7 @@
 import * as ActionType from 'actions/auth'
 import Immutable from 'immutable'
 
-let defaultState = Immutable.fromJS([])
+let defaultState = Immutable.fromJS({})
 
 function authReducer (state = defaultState, action) {
   switch(action.type) {

@@ -4,6 +4,32 @@ This is Artefact!
 
 From [this repo](https://github.com/mz026/universal-redux-template)
 
+## Running locally
+
+Artefact uses Docker to easily run the application on development and production. To proceed, you need to have the latest version of Docker installed on your machine.
+
+To build the Docker images, run the following command from the artefact folder. This will take a while the first time you run it.
+
+```
+docker-compose build
+```
+
+Now run the Docker containers to start up the database, redis, and the node server.
+
+```
+docker-compose up
+```
+
+Finally, open a new tab in the same folder and run this to migrate the databases.
+
+```
+docker-compose run web npm run migrate
+```
+
+Now go to [localhost:3000](localhost:3000) and play around.
+
+## From inside the box
+
 - Install dependencies:
 `$ npm install`
 
@@ -12,12 +38,6 @@ From [this repo](https://github.com/mz026/universal-redux-template)
 
 - To run the test with Mocha, Enzyme, Sinon and Chai:
 `$ npm test`
-
-- To generate a container/component/action and its tests:
-`$ ./bin/generate <type> <path>`
-
-eg: `$ ./bin/generate component myNamespace/MyComponent`
-
 
 ## Deployment:
 
