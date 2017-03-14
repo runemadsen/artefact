@@ -1,17 +1,15 @@
-var path = require('path')
-var webpack = require('webpack')
-var AssetsPlugin = require('assets-webpack-plugin')
+var path = require('path');
+var webpack = require('webpack');
 
-var DEBUG = !(process.env.NODE_ENV === 'production')
+require('dotenv').config()
 
-if (DEBUG) {
-  require('dotenv').config()
-}
-
-var config = {
-  devtool: DEBUG ? 'cheap-module-eval-source-map' : false,
+module.exports = {
+  devtool: 'cheap-module-eval-source-map',
   entry: {
-    app: './app/app',
+    app: [
+      'webpack-hot-middleware/client?reload=true',
+      './app/app'
+    ],
     vendor: [
       'react',
       'react-router',
@@ -23,58 +21,41 @@ var config = {
       'history'
     ]
   },
-  resolve: {
-    modules: [ path.join(__dirname, 'app'), 'node_modules' ]
-  },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: 'http://localhost:3001/static/'
   },
   plugins: [
-    new webpack.EnvironmentPlugin(['NODE_ENV', 'API_BASE_URL'])
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        include: __dirname
-      }
-    ]
-  }
-}
-
-
-if (DEBUG) {
-  config.entry.dev = [
-    'webpack-dev-server/client?http://localhost:3001',
-    'webpack/hot/only-dev-server',
-  ]
-
-  config.plugins = config.plugins.concat([
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filname: 'vendor.js'
     })
-  ])
-  config.output.publicPath = 'http://localhost:3001/static/'
-  config.module.rules[0].options = {
-    "env": {
-      "development": {
-        "presets": ["react-hmre"]
-      }
-    }
-  }
-} else {
-  config.plugins = config.plugins.concat([
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filname: '[name].[chunkhash].js'
-    }),
-    new webpack.optimize.UglifyJsPlugin(),
-  ])
-}
+  ],
 
-module.exports = config
+  // Make sure that we don't need relative paths in require.
+  // This makes it possible to do require('middleware/api') from anywhere.
+  resolve: {
+    modules: [ path.join(__dirname, 'app'), 'node_modules' ]
+  },
+
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        loaders: ['react-hot-loader', 'babel-loader'],
+        include: path.join(__dirname, 'app'),
+        exclude: path.join(__dirname, 'app', 'server')
+      },
+      { test: /\.scss$/,
+        loaders: [
+          'style',
+          'css?modules&camelCase&importLoaders=1',
+          'postcss-loader',
+          'sass?sourceMap'
+        ]
+      }
+    ]
+  }
+};

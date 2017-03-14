@@ -15,40 +15,24 @@ import { SignUpRoute } from './api/auth'
 
 let server = new Express()
 let port = process.env.PORT || 3000
-let scriptSrcs
+
+// TODO: Load manifest in production. Look at the template
+// Where this code was started from. It has it.
+// Use assets-webpack-plugin
+let scriptSrcs = [
+  'http://localhost:3001/static/vendor.js',
+  'http://localhost:3001/static/app.js'
+]
+let styleSrc = '/main.css'
+
 process.env.ON_SERVER = true
 
-let styleSrc
-if ( process.env.NODE_ENV === 'production' ) {
-  let refManifest = require('../../rev-manifest.json')
-  scriptSrcs = [
-    `/${refManifest['vendor.js']}`,
-    `/${refManifest['app.js']}`,
-  ]
-  styleSrc = `/${refManifest['main.css']}`
-} else {
-  scriptSrcs = [
-    'http://localhost:3001/static/vendor.js',
-    'http://localhost:3001/static/dev.js',
-    'http://localhost:3001/static/app.js'
-  ]
-  styleSrc = '/main.css'
-}
-
 server.use(compression())
-
-if (process.env.NODE_ENV === 'production') {
-  server.use(Express.static(path.join(__dirname, '../..', 'public')))
-} else {
-  server.use('/assets', Express.static(path.join(__dirname, '..', 'assets')))
-  server.use(Express.static(path.join(__dirname, '../..', 'dist')))
-}
-
+server.use(Express.static(path.join(__dirname, '../..', 'dist')))
 server.set('views', path.join(__dirname, 'views'))
 server.set('view engine', 'ejs')
 
 // API
-
 server.post('/api/users', SignUpRoute)
 
 // mock apis DELETE AT SOME POINT
