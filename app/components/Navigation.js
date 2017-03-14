@@ -5,7 +5,7 @@ class Navigation extends Component {
   render() {
     return (
       <nav>
-        <div className="container">
+        <div className="Navigation">
           <Link to="/" id="logo">Artefact</Link>
           <Link to="/works">Works</Link>
           <Link to="/people">People</Link>

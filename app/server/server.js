@@ -20,7 +20,7 @@ let scriptSrcs = [
   'http://localhost:3001/static/app.js',
   'http://localhost:3001/static/dev.js'
 ]
-let styleSrc = '/main.css'
+let styleSrc = '/App.css'
 
 process.env.ON_SERVER = true
 

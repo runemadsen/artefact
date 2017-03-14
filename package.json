@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Artefact is awesome",
   "scripts": {
-    "start": "node server.js",
+    "start": "node_modules/.bin/node-sass app/containers/App.scss -o dist/ && node devserver.js",
     "migrate": "node migrations/migrate.js && node migrations/migrate.js --test"
   },
   "license": "MIT",
@@ -43,10 +43,11 @@
     "babel-preset-stage-0": "^6.22.0",
     "dotenv": "^4.0.0",
     "nodemon": "^1.6.0",
+    "postcss-loader": "^1.3.3",
     "postgrator": "^2.8.2",
     "react-hot-loader": "^1.3.0",
+    "webpack": "^2.2.0",
     "webpack-dev-middleware": "^1.10.1",
-    "webpack-hot-middleware": "^2.17.1",
-    "webpack": "^2.2.0"
+    "webpack-hot-middleware": "^2.17.1"
   }
 }

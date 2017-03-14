@@ -42,14 +42,6 @@ module.exports = {
         loaders: ['react-hot-loader', 'babel-loader'],
         include: path.join(__dirname, 'app'),
         exclude: path.join(__dirname, 'app', 'server')
-      },
-      { test: /\.scss$/,
-        loaders: [
-          'style',
-          'css?modules&camelCase&importLoaders=1',
-          'postcss-loader',
-          'sass?sourceMap'
-        ]
       }
     ]
   }
