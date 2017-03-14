@@ -1,6 +1,10 @@
 var _ = require('lodash');
 var postgrator = require('postgrator');
 
+if(process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 var db = process.env.DATABASE_URL;
 
 postgrator.setConfig({
