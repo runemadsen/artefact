@@ -1,4 +1,4 @@
-import { CALL_API  } from 'middleware/api'
+import { CALL_API  } from '../middleware/api'
 
 export const SIGN_UP_SUCCESS = Symbol('SIGN_UP_SUCCESS')
 export const SIGN_UP_ERROR = Symbol('SIGN_UP_ERROR')

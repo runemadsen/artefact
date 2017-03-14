@@ -6,22 +6,19 @@ import { useRouterHistory, RouterContext, match } from 'react-router'
 import { createMemoryHistory, useQueries } from 'history'
 import compression from 'compression'
 import Promise from 'bluebird'
-import configureStore from 'store/configureStore'
-import createRoutes from 'routes/index'
 import { Provider } from 'react-redux'
 import Helmet from 'react-helmet'
 
+import configureStore from '../store/configureStore'
+import createRoutes from '../routes/index'
 import { SignUpRoute } from './api/auth'
 
 let server = new Express()
 let port = process.env.PORT || 3000
-
-// TODO: Load manifest in production. Look at the template
-// Where this code was started from. It has it.
-// Use assets-webpack-plugin
 let scriptSrcs = [
   'http://localhost:3001/static/vendor.js',
-  'http://localhost:3001/static/app.js'
+  'http://localhost:3001/static/app.js',
+  'http://localhost:3001/static/dev.js'
 ]
 let styleSrc = '/main.css'
 
@@ -124,5 +121,5 @@ server.use((err, req, res, next)=> {
   res.status(500).send("something went wrong...")
 })
 
-console.log(`Server is listening to port: ${port}`)
+console.log(`Artefact server is listening on port: ${port}`)
 server.listen(port)

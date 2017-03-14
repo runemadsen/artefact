@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import Helmet from 'react-helmet'
-import Navigation from 'components/Navigation'
-import SignUp from 'containers/SignUp'
-import { signUp } from 'actions/auth'
+
+import Navigation from '../components/Navigation'
+import SignUp from './SignUp'
+import { signUp } from '../actions/auth'
 
 class Home extends Component {
 

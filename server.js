@@ -1,5 +1,5 @@
 // Frontend dev server
-var path = require('path');
+/*var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
 var config = require('./webpack.config.js');
@@ -17,20 +17,40 @@ app.use(require('webpack-dev-middleware')(compiler, {
   }
 }));
 app.use(require('webpack-hot-middleware')(compiler));
-app.listen(3000, function onStart(err) {
+app.listen(3001, function onStart(err) {
   if (err) { console.log(err); }
-  console.info('Listening on port 3000');
-});
+  console.info('Frontend listening on port 3001');
+});*/
+
+// Frontend dev server
+var webpack = require('webpack')
+var WebpackDevServer = require('webpack-dev-server')
+var config = require('./webpack.config')
+new WebpackDevServer(webpack(config), {
+  publicPath: config.output.publicPath,
+  hot: true,
+  historyApiFallback: true,
+  compress: true,
+  stats: {
+    colors: true,
+    hash: true,
+    timings: true,
+    chunks: false
+  }
+}).listen(3001, 'localhost', function (err) {
+  if (err) { console.log(err) }
+  console.log('Frontend is listening on port 3001')
+})
 
 // Backend dev server
-// var nodemon = require('nodemon');
-// nodemon("-e 'js' --ignore node_modules --exec babel-node")
-// nodemon.on('start', function () {
-//     console.log('App has started');
-//   }).on('quit', function () {
-//     console.log('App has quit');
-//     nodemon.reset()
-//     process.exit()
-//   }).on('restart', function (files) {
-//     console.log('App restarted due to: ', files);
-//   });
+var nodemon = require('nodemon');
+nodemon({
+  script: "app/server",
+  verbose: true,
+  watch: "app",
+  ext: "js"
+});
+
+nodemon.on('restart', function (files) {
+  console.log('Backend restarting due to: ', files);
+});

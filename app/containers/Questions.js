@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { loadQuestions } from 'actions/questions'
 import { Link } from 'react-router'
 import _ from 'lodash'
-import Questions from 'components/Questions'
 import Helmet from 'react-helmet'
+
+import { loadQuestions } from '../actions/questions'
+import Questions from '../components/Questions'
 
 class QuestionContainer extends Component {
 
@@ -15,7 +16,7 @@ class QuestionContainer extends Component {
   componentDidMount() {
     this.props.loadQuestions()
   }
-  
+
   render() {
     return (
       <div>

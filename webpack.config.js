@@ -6,10 +6,7 @@ require('dotenv').config()
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: {
-    app: [
-      'webpack-hot-middleware/client?reload=true',
-      './app/app'
-    ],
+    app: './app/app',
     vendor: [
       'react',
       'react-router',
@@ -19,6 +16,10 @@ module.exports = {
       'bluebird',
       'humps',
       'history'
+    ],
+    dev: [
+      'webpack-dev-server/client?http://localhost:3001',
+      'webpack/hot/only-dev-server',
     ]
   },
   output: {
@@ -33,12 +34,6 @@ module.exports = {
       filname: 'vendor.js'
     })
   ],
-
-  // Make sure that we don't need relative paths in require.
-  // This makes it possible to do require('middleware/api') from anywhere.
-  resolve: {
-    modules: [ path.join(__dirname, 'app'), 'node_modules' ]
-  },
 
   module: {
     loaders: [

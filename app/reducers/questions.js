@@ -1,5 +1,6 @@
-import * as ActionType from 'actions/questions'
 import Immutable from 'immutable'
+
+import * as ActionType from '../actions/questions'
 
 let defaultState = Immutable.fromJS([])
 function questionsReducer (state = defaultState, action) {

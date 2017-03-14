@@ -1,4 +1,4 @@
-import { CALL_API, CHAIN_API } from 'middleware/api'
+import { CALL_API, CHAIN_API } from '../middleware/api'
 
 export const LOADED_QUESTIONS = Symbol('LOADED_QUESTIONS')
 export const LOADED_QUESTION_DETAIL = Symbol('LOADED_QUESTION_DETAIL')

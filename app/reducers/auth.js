@@ -1,5 +1,6 @@
-import * as ActionType from 'actions/auth'
 import Immutable from 'immutable'
+
+import * as ActionType from '../actions/auth'
 
 let defaultState = Immutable.fromJS({})
 

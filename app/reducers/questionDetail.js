@@ -1,6 +1,7 @@
-import * as ActionType from 'actions/questions'
 import _ from 'lodash'
 import Immutable from 'immutable'
+
+import * as ActionType from '../actions/questions'
 
 let defaultState = Immutable.fromJS({
   user: {}
