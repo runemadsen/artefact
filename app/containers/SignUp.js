@@ -5,7 +5,7 @@ class SignUp extends Component {
   handleSubmit(e) {
     e.preventDefault()
     // grab from state whenever
-    this.props.onSignUp("USERNAME", "PASSWORD")
+    this.props.onSignUp("USERNAME", "PASSWORD", "MY@EMAIL.COM")
   }
 
   render() {

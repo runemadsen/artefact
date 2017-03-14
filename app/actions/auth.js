@@ -3,7 +3,7 @@ import { CALL_API  } from '../middleware/api'
 export const SIGN_UP_SUCCESS = Symbol('SIGN_UP_SUCCESS')
 export const SIGN_UP_ERROR = Symbol('SIGN_UP_ERROR')
 
-export function signUp(username, password) {
+export function signUp(username, password, email) {
   return {
     [CALL_API]: {
       method: 'post',
@@ -11,7 +11,8 @@ export function signUp(username, password) {
       body: {
         user: {
           username: username,
-          password: password
+          password: password,
+          email: email
         }
       },
       successType: SIGN_UP_SUCCESS,

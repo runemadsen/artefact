@@ -24,7 +24,7 @@ class Home extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSignUp: (username, password) => { dispatch(signUp(username, password ))}
+    onSignUp: (username, password, email) => { dispatch(signUp(username, password, email))}
   }
 }
 
