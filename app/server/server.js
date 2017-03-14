@@ -1,56 +1,38 @@
 import Express from 'express'
 import path from 'path'
-
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { useRouterHistory, RouterContext, match } from 'react-router'
-
 import { createMemoryHistory, useQueries } from 'history'
 import compression from 'compression'
 import Promise from 'bluebird'
-
-import configureStore from 'store/configureStore'
-import createRoutes from 'routes/index'
-
 import { Provider } from 'react-redux'
-
 import Helmet from 'react-helmet'
+
+import configureStore from '../store/configureStore'
+import createRoutes from '../routes/index'
+import { SignUpRoute } from './api/auth'
 
 let server = new Express()
 let port = process.env.PORT || 7000
-let scriptSrcs
+let scriptSrcs = [
+  'http://localhost:3001/static/vendor.js',
+  'http://localhost:3001/static/app.js',
+  'http://localhost:3001/static/dev.js'
+]
+let styleSrc = '/main.css'
+
 process.env.ON_SERVER = true
 
-let styleSrc
-if ( process.env.NODE_ENV === 'production' ) {
-  let refManifest = require('../../rev-manifest.json')
-  scriptSrcs = [
-    `/${refManifest['vendor.js']}`,
-    `/${refManifest['app.js']}`,
-  ]
-  styleSrc = `/${refManifest['main.css']}`
-} else {
-  scriptSrcs = [
-    'http://localhost:7001/static/vendor.js',
-    'http://localhost:7001/static/dev.js',
-    'http://localhost:7001/static/app.js'
-  ]
-  styleSrc = '/main.css'
-}
-
 server.use(compression())
-
-if (process.env.NODE_ENV === 'production') {
-  server.use(Express.static(path.join(__dirname, '../..', 'public')))
-} else {
-  server.use('/assets', Express.static(path.join(__dirname, '..', 'assets')))
-  server.use(Express.static(path.join(__dirname, '../..', 'dist')))
-}
-
+server.use(Express.static(path.join(__dirname, '../..', 'dist')))
 server.set('views', path.join(__dirname, 'views'))
 server.set('view engine', 'ejs')
 
-// mock apis
+// API
+server.post('/api/users', SignUpRoute)
+
+// mock apis DELETE AT SOME POINT
 server.get('/api/questions', (req, res)=> {
   let { questions } = require('./mock_api')
   res.send(questions)
@@ -139,5 +121,5 @@ server.use((err, req, res, next)=> {
   res.status(500).send("something went wrong...")
 })
 
-console.log(`Server is listening to port: ${port}`)
+console.log(`Artefact server is listening on port: ${port}`)
 server.listen(port)

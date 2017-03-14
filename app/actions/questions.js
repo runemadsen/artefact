@@ -1,6 +1,9 @@
-import { CALL_API, CHAIN_API } from 'middleware/api'
+import { CALL_API, CHAIN_API } from '../middleware/api'
 
 export const LOADED_QUESTIONS = Symbol('LOADED_QUESTIONS')
+export const LOADED_QUESTION_DETAIL = Symbol('LOADED_QUESTION_DETAIL')
+export const LOADED_QUESTION_USER = Symbol('LOADED_QUESTION_USER')
+
 export function loadQuestions() {
   return {
     [CALL_API]: {
@@ -11,8 +14,6 @@ export function loadQuestions() {
   }
 }
 
-export const LOADED_QUESTION_DETAIL = Symbol('LOADED_QUESTION_DETAIL')
-export const LOADED_QUESTION_USER = Symbol('LOADED_QUESTION_USER')
 export function loadQuestionDetail ({ id, history }) {
   return {
     [CHAIN_API]: [

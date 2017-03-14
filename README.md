@@ -2,20 +2,14 @@
 
 This is Artefact!
 
+From [this repo](https://github.com/mz026/universal-redux-template)
+
+
 - Install dependencies:
 `$ npm install`
 
 - Host dev environment and start to build something changing the world!
 `$ npm start`
-
-- To run the test with Mocha, Enzyme, Sinon and Chai:
-`$ npm test`
-
-- To generate a container/component/action and its tests:
-`$ ./bin/generate <type> <path>`
-
-eg: `$ ./bin/generate component myNamespace/MyComponent`
-
 
 ## Deployment:
 

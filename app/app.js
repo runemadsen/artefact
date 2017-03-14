@@ -1,14 +1,12 @@
-import 'babel-polyfill'
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { browserHistory } from 'react-router'
-
-import configureStore from 'store/configureStore'
-import createRoutes from 'routes/index'
 import { Provider } from 'react-redux'
 import Immutable from 'immutable'
 import _ from 'lodash'
+
+import configureStore from './store/configureStore'
+import createRoutes from './routes/index'
 
 let reduxState = {}
 if (window.__REDUX_STATE__) {
