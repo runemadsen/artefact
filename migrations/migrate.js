@@ -3,10 +3,6 @@ var postgrator = require('postgrator');
 
 var db = process.env.DATABASE_URL;
 
-if(process.argv[2] == '--test') {
-  db += '_test'
-}
-
 postgrator.setConfig({
   migrationDirectory: __dirname,
   driver: 'pg',
