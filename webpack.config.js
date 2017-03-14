@@ -1,12 +1,19 @@
 var path = require('path')
 var webpack = require('webpack')
 var AssetsPlugin = require('assets-webpack-plugin')
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+ 
 
 var DEBUG = !(process.env.NODE_ENV === 'production')
 
 if (DEBUG) {
   require('dotenv').config()
 }
+
+var extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: DEBUG
+});
 
 var config = {
   devtool: DEBUG ? 'cheap-module-eval-source-map' : false,
@@ -31,7 +38,8 @@ var config = {
     filename: '[name].js'
   },
   plugins: [
-    new webpack.EnvironmentPlugin(['NODE_ENV', 'API_BASE_URL'])
+    new webpack.EnvironmentPlugin(['NODE_ENV', 'API_BASE_URL']),
+    extractSass
   ],
   module: {
     rules: [
@@ -40,7 +48,7 @@ var config = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         include: __dirname
-      }
+      },
     ]
   }
 }
@@ -48,7 +56,7 @@ var config = {
 
 if (DEBUG) {
   config.entry.dev = [
-    'webpack-dev-server/client?http://localhost:3001',
+    'webpack-dev-server/client?http://localhost:7001',
     'webpack/hot/only-dev-server',
   ]
 
@@ -59,7 +67,7 @@ if (DEBUG) {
       filname: 'vendor.js'
     })
   ])
-  config.output.publicPath = 'http://localhost:3001/static/'
+  config.output.publicPath = 'http://localhost:7001/static/'
   config.module.rules[0].options = {
     "env": {
       "development": {

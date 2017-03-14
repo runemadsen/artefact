@@ -1,0 +1,63 @@
+@import "../../node_modules/react-select/dist/react-select";
+
+.form_select {
+  label {
+    position: absolute;
+    max-width: $label-width;
+    padding-top: 7px;
+  }
+  &:after{
+    content:" ";
+    display: table;
+    clear: both;
+    height: 0;
+    font-size: 0;
+  }
+}
+
+.Select {
+  padding-left: $label-width;
+  border-bottom: $border; 
+  font-size: $font-size-medium;
+  margin-bottom: $input-spacing;
+  outline: none;
+  &.is-focused {
+    border-bottom-color: $color-highlight;
+  }
+  
+  @for $i from 2 to 5 {
+    &.Select-split-#{$i} {
+      width: calc( ( ( 100% - #{$label-width} ) / #{$i} ) - 1px);
+      float: left;
+      &:not(:nth-child(2)){
+        padding-left: 0;
+      }
+      &:nth-child(2){
+        width: calc( ( 100% - #{$label-width} ) / #{$i} + #{$label-width});
+      }
+    }
+  }
+}
+.Select-control{
+  border-radius: 0;
+  border: none;
+  box-shadow: none!important;
+}
+.Select-placeholder, .Select-input, .Select-value {
+  padding-left: 0 !important;
+  line-height: 40px !important;
+}
+.Select-placeholder, .Select--single > .Select-control .Select-value {
+  line-height: 40px;
+}
+.Select-option {
+
+  &.is-focused{ 
+  background-color: transparent;
+  border-bottom: 2px solid $color-highlight;
+  }
+  &.is-selected {
+    background-color: $color-highlight;
+  }
+  
+}

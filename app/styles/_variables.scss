@@ -1,0 +1,17 @@
+$color-highlight: rgb(255,200,5);
+
+
+$color-text: darken(white, 75%);;
+$color-text-light: lighten($color-text, 10%);
+
+$color-border: darken(white, 5%);
+
+
+$font-size-small: 18px;
+$font-size-medium: 24px;
+$font-size-large: 28px;
+
+
+$border: 2px solid $color-border;
+$label-width: 125px;
+$input-spacing: .75em;

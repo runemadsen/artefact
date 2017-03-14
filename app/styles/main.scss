@@ -1,5 +1,6 @@
+@import "variables";
+@import "base";
 @import "intro";
-
-body {
-  font-family: Arial;
-}
+@import "../components/Input";
+@import "../components/Select";
+@import "../components/MonthYearPicker";

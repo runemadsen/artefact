@@ -17,7 +17,7 @@ import { Provider } from 'react-redux'
 import Helmet from 'react-helmet'
 
 let server = new Express()
-let port = process.env.PORT || 3000
+let port = process.env.PORT || 7000
 let scriptSrcs
 process.env.ON_SERVER = true
 
@@ -31,9 +31,9 @@ if ( process.env.NODE_ENV === 'production' ) {
   styleSrc = `/${refManifest['main.css']}`
 } else {
   scriptSrcs = [
-    'http://localhost:3001/static/vendor.js',
-    'http://localhost:3001/static/dev.js',
-    'http://localhost:3001/static/app.js'
+    'http://localhost:7001/static/vendor.js',
+    'http://localhost:7001/static/dev.js',
+    'http://localhost:7001/static/app.js'
   ]
   styleSrc = '/main.css'
 }

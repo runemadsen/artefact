@@ -1,0 +1,44 @@
+@import "../styles/variables";
+
+.form_input {
+  width: 100%;
+  margin-bottom: $input-spacing;
+  &:after{
+    content:" ";
+    display: table;
+    clear: both;
+    height: 0;
+    font-size: 0;
+  }
+  label {
+    position: absolute;
+    max-width: $label-width;
+    padding-top: 7px;
+  }
+  input {
+    width: 100%;
+    font-family: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: $font-size-medium;
+    outline: none;
+    border: none;
+    padding-left: $label-width;
+    border-bottom: $border;
+    &:focus {
+      border-bottom-color: $color-highlight;
+    }
+    @for $i from 2 to 5 {
+      &.input-split-#{$i} {
+        width: calc( ( ( 100% - #{$label-width} ) / #{$i} ) - 1px);
+        float: left;
+        &:not(:first-of-type){
+          padding-left: 0;
+        }
+        &:first-child{
+          width: calc( ( 100% - #{$label-width} ) / #{$i} + #{$label-width});
+        }
+      }
+    }
+  }  
+}
