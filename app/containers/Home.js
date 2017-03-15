@@ -17,7 +17,7 @@ class Home extends Component {
         <Helmet title="Home" />
         <div className="container">
           { this.props.loggedIn ?
-            <p>You're logged in</p>
+            <p>You are logged in</p>
             :
             <div>
               <SignUp onSignUp={this.props.onSignUp} />
