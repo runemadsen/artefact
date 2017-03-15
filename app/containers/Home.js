@@ -15,7 +15,11 @@ class Home extends Component {
         <Navigation />
         <Helmet title="Home" />
         <div className="container">
-          <SignUp onSignUp={this.props.onSignUp} />
+          { this.props.loggedIn ?
+            <p>You're logged in</p>
+            :
+            <SignUp onSignUp={this.props.onSignUp} />
+          }
         </div>
       </div>
     )
@@ -29,7 +33,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return {}
+  return { loggedIn: state.auth.get('loggedIn') }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
