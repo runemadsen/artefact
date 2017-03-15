@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import Artefact from '../components/Artefact'
 
 class Navigation extends Component {
+
   render() {
     return (
       <nav>
@@ -14,13 +15,16 @@ class Navigation extends Component {
           </div>
           <div className="right">
             <Link to="/user">Profile</Link>
-            <Link to="/users/logout">Log out</Link>
+            <a href="#" onClick={(e) => { e.preventDefault(); this.props.onSignOut()}}>Log Out</a>
           </div>
-          
         </div>
       </nav>
     )
   }
+}
+
+Navigation.propTypes = {
+  onSignOut: React.PropTypes.func.isRequired
 }
 
 export default Navigation

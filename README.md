@@ -2,36 +2,48 @@
 
 This is Artefact!
 
-From [this repo](https://github.com/mz026/universal-redux-template)
+## Setting up a development environment
 
+First make sure that you have postgres.app installed and running on your machine.
 
-- Install dependencies:
-`$ npm install`
+Then, run the following command in the terminal:
+`createdb artefact`
 
-- Host dev environment and start to build something changing the world!
+Then, install the dependencies:
+`npm install`
+
+Then, migrate the database:
+`npm run migrate`
+
+Then, start the app:
 `$ npm start`
 
-## Deployment:
 
-To deploy this app to production environment:
+## fetchData
 
-- Prepare a server with NodeJS environment
+This is the way a component can get initial data working both on server / client.
 
-- Use whatever tool to upload this app to server. ([Capistrano](http://capistranorb.com/) is a good choice.)
-
-- Run `$ NODE_ENV=production npm install` on server
-  - After the installation above, `postinstall` script will run automatically, building front-end related assets and rev-ed server code under `dist/` folder.
-
-- Kick off the server with:
-
-` NODE_ENV=production NODE_PATH=./dist/server-build node dist/server-build/server`
-
-### Deploy to Heroku
-
-To deploy this app to heroku,
-
-- Set up heroku git remote url
-- Set `API_BASE_URL` to heroku config var. (without trailing slash)
-
-Here's a [sample](https://redux-template-test.herokuapp.com/) deployed to heroku: https://redux-template-test.herokuapp.com/
-For this case, the `API_BASE_URL` mention above would be `https://redux-template-test.herokuapp.com`
+```js
+class Question extends Component {
+  static fetchData({ store, params, history }) {
+    let { id } = params
+    return store.dispatch(loadQuestionDetail({ id, history }))
+  }
+  componentDidMount() {
+    let { id } = this.props.params
+    this.props.loadQuestionDetail({ id, history: browserHistory })
+  }
+  render() {
+    let { question } = this.props
+    return (
+      <div>
+        <Helmet
+          title={'Question ' + this.props.params.id}
+        />
+        <h2>{ question.get('content') }</h2>
+        <h3> User: {question.getIn(['user', 'name'])} </h3>
+      </div>
+    )
+  }
+}
+```

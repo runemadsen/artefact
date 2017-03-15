@@ -3,8 +3,6 @@ import Promise, { using } from 'bluebird'
 import _ from 'lodash'
 import { camelizeKeys } from 'humps'
 
-import config from '../config'
-
 export const CALL_API = Symbol('CALL_API')
 export const CHAIN_API = Symbol('CHAIN_API')
 
@@ -98,7 +96,9 @@ function extractParams (callApi) {
     afterError
   } = callApi
 
-  let url = `${config.API_BASE_URL}${path}`
+  // We could append a base URL here if needed.
+  // This assumes API is on the same domain.
+  let url = path
 
   return {
     method,

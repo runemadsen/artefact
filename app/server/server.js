@@ -6,12 +6,22 @@ import { useRouterHistory, RouterContext, match } from 'react-router'
 import { createMemoryHistory, useQueries } from 'history'
 import compression from 'compression'
 import Promise from 'bluebird'
+import Immutable from 'immutable'
 import { Provider } from 'react-redux'
 import Helmet from 'react-helmet'
+import passport from 'passport'
+import { Strategy } from 'passport-local'
+import bodyParser  from 'body-parser'
+import session from 'express-session'
+import methodOverride from 'method-override'
+import _ from 'lodash'
 
+import requestCheck from './middleware/requestCheck'
 import configureStore from '../store/configureStore'
 import createRoutes from '../routes/index'
-import { SignUpRoute } from './api/auth'
+import { UsersSignUp, UsersSignIn, UsersSignOut } from './api/users'
+
+import User from './models/user'
 
 let server = new Express()
 let port = process.env.PORT || 7000
@@ -22,39 +32,63 @@ let scriptSrcs = [
 ]
 let styleSrc = '/main.css'
 
-process.env.ON_SERVER = true
-
 server.use(compression())
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true }));
+server.use(methodOverride('_method'));
+server.use(session({
+  store: new (require('connect-pg-simple')(session))(),
+  secret: process.env.SESSION_SECRET || 'secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 360 * 24 * 60 * 60 * 1000 } // a year-ish
+}));
 server.use(Express.static(path.join(__dirname, '../..', 'dist')))
 server.set('views', path.join(__dirname, 'views'))
 server.set('view engine', 'ejs')
 
+// Auth
+// ---------------------------------------------
+
+// Find user by username and password
+passport.use(new Strategy(User.verify));
+
+// Serialize / deserialize from session
+passport.serializeUser(function(user, cb) {
+  cb(null, user.id);
+});
+
+passport.deserializeUser(function(id, cb) {
+  User.findOneBy({ id:id }, function (err, user) {
+    if(err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+// Use passport middleware
+server.use(passport.initialize());
+server.use(passport.session());
+server.use(requestCheck());
+
 // API
-server.post('/api/users', SignUpRoute)
+// ---------------------------------------------
 
-// mock apis DELETE AT SOME POINT
-server.get('/api/questions', (req, res)=> {
-  let { questions } = require('./mock_api')
-  res.send(questions)
-})
-
-server.get('/api/users/:id', (req, res)=> {
-  let { getUser } = require('./mock_api')
-  res.send(getUser(req.params.id))
-})
-server.get('/api/questions/:id', (req, res)=> {
-  let { getQuestion } = require('./mock_api')
-  let question = getQuestion(req.params.id)
-  if (question) {
-    res.send(question)
-  } else {
-    res.status(404).send({ reason: 'question not found' })
-  }
-})
+server.post('/api/users', UsersSignUp);
+server.post('/api/users/login', passport.authenticate('local'), UsersSignIn);
+server.post('/api/users/logout', UsersSignOut);
 
 server.get('*', (req, res, next)=> {
+
+  // If passport authenticated a user, set initial redux
+  // state to logged in.
+  let initialState = {
+    auth: Immutable.fromJS({
+      loggedIn: !_.isUndefined(req.user)
+    })
+  }
+
   let history = useRouterHistory(useQueries(createMemoryHistory))()
-  let store = configureStore()
+  let store = configureStore(initialState)
   let routes = createRoutes(history)
   let location = history.createLocation(req.url)
 

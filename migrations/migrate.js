@@ -1,11 +1,11 @@
 var _ = require('lodash');
 var postgrator = require('postgrator');
 
-var db = process.env.DATABASE_URL;
-
-if(process.argv[2] == '--test') {
-  db += '_test'
+if(process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
 }
+
+var db = process.env.DATABASE_URL;
 
 postgrator.setConfig({
   migrationDirectory: __dirname,
