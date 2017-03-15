@@ -6,7 +6,7 @@ let defaultState = Immutable.fromJS({
   loggedIn: false
 })
 
-function authReducer (state = defaultState, action) {
+function authReducer(state = defaultState, action) {
   switch(action.type) {
     case ActionType.SIGN_UP_SUCCESS:
       return state.merge({ loggedIn: true })

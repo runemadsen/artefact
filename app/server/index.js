@@ -14,6 +14,9 @@ if(missing.length > 0) {
   process.exit()
 }
 
+// Tell everyone that we're on the server
+process.env.ON_SERVER = true;
+
 // Everything from here and on is ES6
 require('babel-register')
 require('./server.js')

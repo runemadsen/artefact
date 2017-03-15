@@ -6,6 +6,7 @@ import { useRouterHistory, RouterContext, match } from 'react-router'
 import { createMemoryHistory, useQueries } from 'history'
 import compression from 'compression'
 import Promise from 'bluebird'
+import Immutable from 'immutable'
 import { Provider } from 'react-redux'
 import Helmet from 'react-helmet'
 import passport from 'passport'
@@ -13,6 +14,7 @@ import { Strategy } from 'passport-local'
 import bodyParser  from 'body-parser'
 import session from 'express-session'
 import methodOverride from 'method-override'
+import _ from 'lodash'
 
 import requestCheck from './middleware/requestCheck'
 import configureStore from '../store/configureStore'
@@ -74,8 +76,15 @@ server.use(requestCheck());
 server.post('/api/users', UsersSignUp)
 
 server.get('*', (req, res, next)=> {
+
+  let initialState = {
+    auth: Immutable.fromJS({
+      loggedIn: !_.isUndefined(req.user)
+    })
+  }
+
   let history = useRouterHistory(useQueries(createMemoryHistory))()
-  let store = configureStore()
+  let store = configureStore(initialState)
   let routes = createRoutes(history)
   let location = history.createLocation(req.url)
 
