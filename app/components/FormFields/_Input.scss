@@ -1,4 +1,4 @@
-@import "../styles/variables";
+@import "../../styles/variables";
 
 .form_input {
   width: 100%;
@@ -25,6 +25,7 @@
     border: none;
     padding-left: $label-width;
     border-bottom: $border;
+    height: 38px;
     &:focus {
       border-bottom-color: $color-highlight;
     }
@@ -32,10 +33,10 @@
       &.input-split-#{$i} {
         width: calc( ( ( 100% - #{$label-width} ) / #{$i} ) - 1px);
         float: left;
-        &:not(:first-of-type){
+        &:not(:nth-child(2)){
           padding-left: 0;
         }
-        &:first-child{
+        &:nth-child(2){
           width: calc( ( 100% - #{$label-width} ) / #{$i} + #{$label-width});
         }
       }

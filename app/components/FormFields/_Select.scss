@@ -1,4 +1,4 @@
-@import "../../node_modules/react-select/dist/react-select";
+@import "../../../node_modules/react-select/dist/react-select";
 
 .form_select {
   label {
@@ -13,13 +13,15 @@
     height: 0;
     font-size: 0;
   }
+  .Select {
+     margin-bottom: $input-spacing;
+  }
 }
 
 .Select {
   padding-left: $label-width;
   border-bottom: $border; 
   font-size: $font-size-medium;
-  margin-bottom: $input-spacing;
   outline: none;
   &.is-focused {
     border-bottom-color: $color-highlight;

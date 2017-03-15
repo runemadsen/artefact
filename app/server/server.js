@@ -16,9 +16,9 @@ import { SignUpRoute } from './api/auth'
 let server = new Express()
 let port = process.env.PORT || 7000
 let scriptSrcs = [
-  'http://localhost:3001/static/vendor.js',
-  'http://localhost:3001/static/app.js',
-  'http://localhost:3001/static/dev.js'
+  'http://localhost:7001/static/vendor.js',
+  'http://localhost:7001/static/app.js',
+  'http://localhost:7001/static/dev.js'
 ]
 let styleSrc = '/main.css'
 

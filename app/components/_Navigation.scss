@@ -1,0 +1,29 @@
+.Navigation {
+  height: 75px;
+  .left {
+    margin-top: 33px;
+    float: left;
+  }
+  .right {
+    margin-top: 33px;
+    float: right;
+  }
+  a {
+    &:not(:last-child){
+      margin-right: 1em;  
+    }
+    display: inline-block;
+    font-size: $font-size-medium;
+    text-decoration: none;
+    color: $color-text;
+    float: left;
+  }
+
+  #logo {
+    color: $color-text;
+    margin-top: 0.5em;
+    font-size: 2em;
+    // font-weight: bold;
+  }
+
+}

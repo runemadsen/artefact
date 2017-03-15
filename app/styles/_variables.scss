@@ -6,6 +6,8 @@ $color-text-light: lighten($color-text, 10%);
 
 $color-border: darken(white, 5%);
 
+$color-background: darken(white, 8%);
+$color-background-light: darken(white, 4%);
 
 $font-size-small: 18px;
 $font-size-medium: 24px;
@@ -14,4 +16,4 @@ $font-size-large: 28px;
 
 $border: 2px solid $color-border;
 $label-width: 125px;
-$input-spacing: .75em;
+$input-spacing: 1em;

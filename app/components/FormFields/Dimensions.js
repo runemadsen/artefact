@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import ReactSelect from 'react-select'
 import classnames from 'classnames'
-import {makeOptions} from '../helpers'
+import {makeOptions} from '../../helpers'
 export default class Dimensions extends Component {
     
   makeRef(d){

@@ -18,14 +18,14 @@ module.exports = {
       'history'
     ],
     dev: [
-      'webpack-dev-server/client?http://localhost:3001',
+      'webpack-dev-server/client?http://localhost:7001',
       'webpack/hot/only-dev-server',
     ]
   },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: 'http://localhost:3001/static/'
+    publicPath: 'http://localhost:7001/static/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -42,7 +42,7 @@ module.exports = {
         loaders: ['react-hot-loader', 'babel-loader'],
         include: path.join(__dirname, 'app'),
         exclude: path.join(__dirname, 'app', 'server')
-      }
+      },
     ]
   }
 };

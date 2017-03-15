@@ -1,0 +1,22 @@
+.form_toggle {
+  border-bottom: $border;
+
+}
+.form_toggle_options {
+  position: relative;
+  padding-left: $label-width;
+}
+
+.form_toggle_option {
+  float: left;
+  width: 50%;
+  background-color: $color-background-light;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  border-bottom: $border;
+  margin-bottom: -2px;
+  &.is-selected {
+    background-color: $color-highlight;
+  }
+}

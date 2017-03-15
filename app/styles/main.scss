@@ -1,6 +1,8 @@
 @import "variables";
 @import "base";
 @import "../containers/App";
-@import "../components/Input";
-@import "../components/Select";
-@import "../components/MonthYearPicker";
+@import "../components/FormFields/Input";
+@import "../components/FormFields/Select";
+@import "../components/FormFields/Toggle";
+@import "../components/FormFields/MonthYearPicker";
+

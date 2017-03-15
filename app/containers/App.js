@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
+import Navigation from '../components/Navigation'
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <Helmet
           defaultTitle="Artefact"
           titleTemplate="%s - Artefact"
@@ -14,7 +15,10 @@ class App extends Component {
           ]}
           htmlAttributes={{"lang": "en"}}
         />
-        {this.props.children}
+        <Navigation />
+        <main>
+          {this.props.children}
+        </main>
       </div>
     )
   }
