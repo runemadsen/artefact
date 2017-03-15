@@ -16,7 +16,7 @@ Then, migrate the database:
 `npm run migrate`
 
 Then, start the app:
-`$ npm start`
+`npm start`
 
 
 ## fetchData

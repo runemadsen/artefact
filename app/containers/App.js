@@ -15,7 +15,7 @@ class App extends Component {
           ]}
           htmlAttributes={{"lang": "en"}}
         />
-        <Navigation />
+        <Navigation onSignOut={this.props.onSignOut} loggedIn={this.props.loggedIn} />
         <main>
           {this.props.children}
         </main>
@@ -24,8 +24,13 @@ class App extends Component {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    onSignOut: () => { dispatch(signOut()) }
+  }
+}
 function mapStateToProps(state) {
-  return {}
+  return { loggedIn: state.auth.get('loggedIn') }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -18,5 +18,6 @@
   margin-bottom: -2px;
   &.is-selected {
     background-color: $color-highlight;
+    border-bottom-color: $color-highlight;
   }
 }
