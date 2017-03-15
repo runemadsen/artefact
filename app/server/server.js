@@ -77,6 +77,8 @@ server.post('/api/users', UsersSignUp)
 
 server.get('*', (req, res, next)=> {
 
+  // If passport authenticated a user, set initial redux
+  // state to logged in.
   let initialState = {
     auth: Immutable.fromJS({
       loggedIn: !_.isUndefined(req.user)

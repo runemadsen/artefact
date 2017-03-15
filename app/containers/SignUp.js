@@ -4,8 +4,12 @@ class SignUp extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    // grab from state whenever
-    this.props.onSignUp("USERNAME", "PASSWORD", "MY@EMAIL.COM")
+    // Grab directly from input fields via ID's.
+    // Replace with Martin's components when ready
+    let username = document.getElementById('signUpUsername').value
+    let password = document.getElementById('signUpPassword').value
+    let email = document.getElementById('signUpEmail').value
+    this.props.onSignUp(username, password, email)
   }
 
   render() {
@@ -13,9 +17,9 @@ class SignUp extends Component {
       <div>
         <h2>Sign Up</h2>
         <form autoComplete="off" onSubmit={ (e) => this.handleSubmit(e) }>
-          <input type="text" name="user[username]" placeholder="Pick a username" /><br />
-          <input type="email" name="user[email]" placeholder="Your email address" /><br />
-          <input type="password" name="user[password]" placeholder="Create a password" /><br />
+          <input type="text" id="signUpUsername" name="username" placeholder="Pick a username" /><br />
+          <input type="email" id="signUpEmail" name="email" placeholder="Your email address" /><br />
+          <input type="password" id="signUpPassword" name="password" placeholder="Create a password" /><br />
           <button type="submit">Sign up for Artefact</button>
         </form>
       </div>
