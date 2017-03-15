@@ -19,7 +19,7 @@ import _ from 'lodash'
 import requestCheck from './middleware/requestCheck'
 import configureStore from '../store/configureStore'
 import createRoutes from '../routes/index'
-import { UsersSignUp } from './api/users'
+import { UsersSignUp, UsersSignIn, UsersSignOut } from './api/users'
 
 import User from './models/user'
 
@@ -73,7 +73,9 @@ server.use(requestCheck());
 // API
 // ---------------------------------------------
 
-server.post('/api/users', UsersSignUp)
+server.post('/api/users', UsersSignUp);
+server.post('/api/users/login', passport.authenticate('local'), UsersSignIn);
+server.post('/api/users/logout', UsersSignOut);
 
 server.get('*', (req, res, next)=> {
 

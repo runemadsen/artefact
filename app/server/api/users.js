@@ -15,3 +15,14 @@ export function UsersSignUp(req, res) {
   });
 
 }
+
+export function UsersSignIn(req, res) {
+  // Authentication happens in the passport.authenticate middleware handler
+  // set up in server.js
+  return res.status(200).json({message: "User logged in"});
+}
+
+export function UsersSignOut(req, res) {
+  req.logout();
+  return res.status(200).json({message: "User logged out"});
+}

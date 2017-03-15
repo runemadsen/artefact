@@ -32,6 +32,4 @@ SignUp.propTypes = {
   onSignUp: React.PropTypes.func.isRequired
 }
 
-// USE CONNECT, ETC
-
 export default SignUp

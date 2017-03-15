@@ -5,20 +5,24 @@ import Helmet from 'react-helmet'
 
 import Navigation from '../components/Navigation'
 import SignUp from './SignUp'
-import { signUp } from '../actions/auth'
+import SignIn from './SignIn'
+import { signUp, signIn, signOut } from '../actions/auth'
 
 class Home extends Component {
 
   render() {
     return (
       <div>
-        <Navigation />
+        <Navigation onSignOut={this.props.onSignOut} />
         <Helmet title="Home" />
         <div className="container">
           { this.props.loggedIn ?
             <p>You're logged in</p>
             :
-            <SignUp onSignUp={this.props.onSignUp} />
+            <div>
+              <SignUp onSignUp={this.props.onSignUp} />
+              <SignIn onSignIn={this.props.onSignIn} />
+            </div>
           }
         </div>
       </div>
@@ -28,7 +32,9 @@ class Home extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSignUp: (username, password, email) => { dispatch(signUp(username, password, email))}
+    onSignUp: (username, password, email) => { dispatch(signUp(username, password, email)) },
+    onSignIn: (username, password) => { dispatch(signIn(username, password)) },
+    onSignOut: () => { dispatch(signOut()) }
   }
 }
 
