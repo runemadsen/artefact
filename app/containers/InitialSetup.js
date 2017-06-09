@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 
 import Input from '../components/FormFields/Input'
 import Select from '../components/FormFields/Select'
-import Status from '../components/Status'
+import Status from '../components/Atoms/Status'
 
 import {makeOptions} from '../helpers'
 

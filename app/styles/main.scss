@@ -1,9 +1,11 @@
-@import "variables";
-@import "base";
+@import "./variables";
+@import "./base";
+
 @import "../containers/App";
+@import "../components/Navigation";
+
 @import "../components/FormFields/Input";
 @import "../components/FormFields/Select";
 @import "../components/FormFields/Toggle";
 @import "../components/FormFields/MonthYearPicker";
-
-@import "../components/Button";
+@import "../components/FormFields/Button";

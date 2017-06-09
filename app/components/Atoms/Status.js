@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import classnames from 'classnames'
 
 export default class Status extends Component {
-  
+    
   render() {
     let {status} = this.props
     let icon = status == "saved" ? "✔" : "";

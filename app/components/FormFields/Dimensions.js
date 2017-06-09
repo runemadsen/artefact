@@ -6,21 +6,23 @@ import {makeOptions} from '../../helpers'
 export default class Dimensions extends Component {
     
   makeRef(d){
-    return `${this.props.name}[${d}]`
+    return `${this.props.name}-${d}`
   }
   onChange(e){
-    // console.log(e.target, e.target.value, e.target.name)
-    this.props.onChange(e.target.value, e.target.name)
+    console.log("-->", e)
+    let loc = [this.props.name,e.name]
+    console.log(e.value, loc)
+    this.props.onChange(e.value, loc)
   }
   render() {
     let {label, name, value} = this.props
-    value = value ? value : this.defaultValues
-    
+    console.log(value)
     let dimensionsClass = classnames(
       "form_dimensions", 
       "form_input",
       )
     return (
+
       <div className={dimensionsClass}>
         <label>{label}</label>
         {
@@ -29,28 +31,28 @@ export default class Dimensions extends Component {
               className="input-split-4"
               key={this.makeRef(n)}
               ref={this.makeRef(n)}
-              name={this.makeRef(n)}
+              name={n}
               type="number"
               step="1"
               min="0" 
               value={value[n]} 
               placeholder={n}
-              onChange={(e)=>this.onChange(e)} 
+              onChange={(e)=>this.onChange(e.target)} 
               />)
           })
         }
         <ReactSelect name={this.makeRef("units")} clearable={false}  
           className="Select-split-4"
-          value="in"
+          value={value.units}
           options={makeOptions(["in","cm"])} 
-          onChange={(e)=>this.onChange(e)} />
+          onChange={(e)=>this.onChange({name: 'units', value: e.value})} />
       </div>
     )
   }
 }
 
 Dimensions.defaultProps = {
-  value: {width: undefined, height: undefined, depth: undefined},
+  value: {width: undefined, height: undefined, depth: undefined, units: 'cm'},
   subNames: ["width","height", "depth"]
 }
 

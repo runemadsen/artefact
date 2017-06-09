@@ -1,9 +1,22 @@
 .Navigation {
   height: 75px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 33px;
+  text-align: left;
   
+  & > :last-child{
+    text-align: right;
+  }
+  & > :not(:last-child){
+    margin-right: 1em;
+  }
+  .nav-link{
+    margin-top: 7px;
+  }
   #logo {
     color: $color-text;
-    margin-top: 27px;
+    // margin-top: 27px;
     svg {
       height: 38px;
     }
@@ -24,14 +37,7 @@
       border-bottom: 2px solid $color-highlight;
     }
   }
-  .left {
-    margin-top: 33px;
-    float: left;
-  }
-  .right {
-    margin-top: 33px;
-    float: right;
-  }
+
   a {
     &:not(:last-child){
       margin-right: 1em;  
