@@ -32,9 +32,10 @@
   a {
     border-bottom: none;
   }
-  .link {
+  .nav-link {
+    height: 1.15em;
     &:hover, &.link-active{
-      border-bottom: 2px solid $color-highlight;
+      border-bottom: 3px solid $color-highlight;
     }
   }
 
@@ -48,6 +49,4 @@
     color: $color-text;
     float: left;
   }
-
-
 }

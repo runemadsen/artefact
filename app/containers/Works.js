@@ -15,12 +15,12 @@ class Works extends Component {
 
   render() {
     return (
-      <div>
+      <div className='page-works'>
         <Helmet title='Works' />
-        <h1>Works</h1>
-        <Link className='button' to='/works/new'>New Work</Link>
-        <Link className='button' to='/works/new'>New Editioned Work</Link>
-        
+        <div className='actions'>
+          <Link className='button' to='/works/new'>New Work</Link>
+          <Link className='button' to='/works/new'>New Editioned Work</Link>
+        </div>
         <List works={this.props.works}/>
       </div>
     )

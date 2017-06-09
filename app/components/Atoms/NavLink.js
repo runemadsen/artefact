@@ -6,7 +6,7 @@ import classnames from 'classnames'
 class NavLink extends Component {
   render(){
     let classes = classnames("nav-link", {
-      "link-active" :  /this.props.to/.test(this.props.currentPath)
+      "link-active" :  RegExp(this.props.to).test(this.props.currentPath)
     } )
     return (
       <Link className={classes} to={this.props.to}>{this.props.children}</Link>

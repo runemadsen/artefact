@@ -1,0 +1,34 @@
+.list {
+  border-top: 1px solid $color-border;
+}
+.list-item{
+  display: flex;
+  font-size: $font-size-small;
+  padding: 1em 0;
+  border-bottom: 1px solid $color-border;
+}
+.item-image {
+  margin: 0 1em;
+  max-width: 100px;
+  img {
+    max-width: 100%;
+  }
+}
+.item-info {
+  width: 70%;
+  .item-title {
+    font-size: $font-size-medium;
+  }
+  .item-artist-name {
+    font-size: $font-size-normal;
+  }
+}
+.item-status {
+  width: 25%;
+}
+.item-label {
+  font-size: $font-size-smaller;
+  display: inline-block;
+  min-width: 70px;
+}
+

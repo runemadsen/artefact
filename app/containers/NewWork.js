@@ -18,10 +18,8 @@ import {emptyWork} from '../store/dummy'
 class NewWork extends Component {
   
   handleOnChange(data, loc){
-    console.log('changed %s to %s', loc, data )
     if (!_.isArray(loc)) loc = [loc]
     this.setState(this.state.setIn(loc, data))
-    console.log("new state -->", this.state.toJS())
   }
   render() {
     let { work } = this.props
@@ -33,6 +31,7 @@ class NewWork extends Component {
         />
 
         <h1>New Work</h1>
+        
         <form>
         <Input label="title" name="title" value={work.title} placeholder="Artwork's Title" onChange={handleOnChange.bind(this)}/>
         <MonthYearPicker label="creation date" value={work.date} name="date" onChange={handleOnChange.bind(this)}/>

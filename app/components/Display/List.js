@@ -5,7 +5,7 @@ class List extends Component {
 
   render() {
     return (
-      <div>
+      <div className='list'>
         {this.props.works.map((w,i)=>{
           return <ListItem ref={`work-${i}`} work={w} />
         })}

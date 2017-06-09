@@ -1,13 +1,12 @@
 body {
   font-family: "Times New Roman";
-  font-size: $font-size-small;
+  font-size: $font-size-normal;
+  line-height: 1.2;
   color: $color-text;
 }
 
-* {
-  box-sizing: border-box;
-}
-
+html { box-sizing: border-box; }
+* { box-sizing: inherit; }
 
 h1,h2,h3,h4,h5,h6{
   font-weight: normal;
