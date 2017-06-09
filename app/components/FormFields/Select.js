@@ -1,16 +1,16 @@
 import React, { Component, PropTypes } from 'react'
-import ReactSelect from 'react-select';
-import { Creatable } from 'react-select';
-
+import ReactSelect from 'react-select'
+import { Creatable } from 'react-select'
 import classnames from 'classnames'
 
 export default class Select extends Component {
   
   onChange(e){
-    this.props.onChange(e.value)
+    this.props.onChange(e.value, this.props.name)
   }
   render() {
     let {label, name, value, options, placeholder, clearable, creatable} = this.props    
+    clearable = typeof clearable === 'undefined' ? false : clearable
     let selectClass = classnames(
       "form_select", 
       {"form_select_creatable" : creatable ,} 
@@ -21,21 +21,21 @@ export default class Select extends Component {
         {
           creatable ?
           <Creatable
-              name={`${name}_year`}
+              name={name}
               value={value} 
               placeholder={placeholder} 
               options={options}
               clearable={clearable}
-              onChange={(e)=>this.onChangeYear(e)}   
+              onChange={(e)=>this.onChange(e)}   
               />
           :
           <ReactSelect
-              name={`${name}_year`}
+              name={name}
               value={value} 
               placeholder={placeholder} 
               options={options}
               clearable={clearable}
-              onChange={(e)=>this.onChangeYear(e)}   
+              onChange={(e)=>this.onChange(e)}   
               />
         }
         

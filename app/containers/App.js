@@ -15,7 +15,7 @@ class App extends Component {
           ]}
           htmlAttributes={{"lang": "en"}}
         />
-        <Navigation onSignOut={this.props.onSignOut} loggedIn={this.props.loggedIn} />
+        <Navigation currentPath={this.props.location.pathname} onSignOut={this.props.onSignOut} loggedIn={this.props.loggedIn} />
         <main>
           {this.props.children}
         </main>

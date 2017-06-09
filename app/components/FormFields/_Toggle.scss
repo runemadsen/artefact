@@ -5,12 +5,14 @@
 .form_toggle_options {
   position: relative;
   padding-left: $label-width;
+  background-color: $color-background-light;
 }
 
 .form_toggle_option {
+  position: relative;
+  z-index: 10;
   float: left;
   width: 50%;
-  background-color: $color-background-light;
   height: 38px;
   line-height: 38px;
   text-align: center;
@@ -19,5 +21,13 @@
   &.is-selected {
     background-color: $color-highlight;
     border-bottom-color: $color-highlight;
+  }
+  &.selector{
+    position: absolute;
+    z-index: 9;
+    width: 50%;
+    height: 38px;
+    background-color: $color-highlight;
+    border-bottom-color: $color-highlight;   
   }
 }

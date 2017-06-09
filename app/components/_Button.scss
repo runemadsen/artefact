@@ -1,0 +1,13 @@
+.button {
+  font-size: $font-size-medium;
+  padding: .25em .75em;
+  border: $border;
+  border-color: $color-highlight; 
+  &:not(:last-of-type) {
+    margin-right: 1em;    
+  }
+  &:hover {
+    background-color: $color-highlight;
+  }
+  
+}

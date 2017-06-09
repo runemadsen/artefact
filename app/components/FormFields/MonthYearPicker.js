@@ -6,15 +6,16 @@ import classnames from 'classnames'
 
 export default class MonthYearPicker extends Component {
   onChangeMonth(e){
-    this.props.onChange(this.date.setMonth(e.value))
+    this.props.onChange(this.date.setMonth(e.value), this.props.name)
   }
   onChangeYear(e){
-    this.props.onChange(this.date.setYear(e.value))
+    this.props.onChange(this.date.setYear(e.value), this.props.name)
   }
   render() {
     
     let {label, name, value, options} = this.props    
     let today = new Date()
+    console.log(value)
     this.date = typeof value !== "undefined" ? new Date(value) : new Date()
     let selectClass = classnames(
       "form_monthYearPicker", 

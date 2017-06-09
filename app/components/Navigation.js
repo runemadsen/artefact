@@ -1,24 +1,31 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
+import classnames from 'classnames'
 import Artefact from '../components/Artefact'
 
 class Navigation extends Component {
 
+  handleSignOut(e){
+    e.preventDefault()
+    this.props.onSignOut()
+  }
   render() {
+    console.log(this.props.currentPath)
+    let {currentPath} = this.props
     return (
       <nav>
         <div className="Navigation">
           <Link to="/" id="logo"><Artefact/></Link>
           <div className="left">  
-            <Link to="/works">Works</Link>
-            <Link to="/people">People</Link>
+            <NavLink currentPath={currentPath} to="/works">Works</NavLink>
+            <NavLink currentPath={currentPath} to="/people">People</NavLink>
           </div>
           
             { this.props.loggedIn ?
               <div className="right">  
-                <Link to="/user">Profile</Link>
-                <a href="#" onClick={(e) => { e.preventDefault(); this.props.onSignOut()}}>Log Out</a>
+                <NavLink currentPath={currentPath} to="/profile"> Profile</NavLink>
+                <a className="link" href="#" onClick={(e)=>this.handleSignOut(e)}>Log Out</a>
               </div>
               :
               null
@@ -29,6 +36,16 @@ class Navigation extends Component {
   }
 }
 
+class NavLink extends Component {
+  render(){
+    let classes = classnames("link", {
+      "link-active" :  /this.props.to/.test(this.props.currentPath)
+    } )
+    return (
+      <Link className={classes} to={this.props.to}>{this.props.children}</Link>
+      )
+  }
+}
 Navigation.propTypes = {
   onSignOut: React.PropTypes.func.isRequired
 }

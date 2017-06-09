@@ -3,8 +3,8 @@ import classnames from 'classnames'
 
 export default class Input extends Component {
   onChange(e){
-    console.log(e)
-    this.props.onChange(e.target.value)
+    console.log(e.target.value, this.props.name)
+    this.props.onChange(e.target.value, this.props.name)
   }
   render() {
     let {label, name, value, type, placeholder, size} = this.props

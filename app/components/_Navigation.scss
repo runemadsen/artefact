@@ -1,5 +1,29 @@
 .Navigation {
   height: 75px;
+  
+  #logo {
+    color: $color-text;
+    margin-top: 27px;
+    svg {
+      height: 38px;
+    }
+    .logo-text {
+      fill: $color-text;
+    }
+    .logo-underline {
+      fill: $color-highlight;
+    }
+  }
+  
+  
+  a {
+    border-bottom: none;
+  }
+  .link {
+    &:hover, &.link-active{
+      border-bottom: 2px solid $color-highlight;
+    }
+  }
   .left {
     margin-top: 33px;
     float: left;
@@ -19,11 +43,5 @@
     float: left;
   }
 
-  #logo {
-    color: $color-text;
-    margin-top: 0.5em;
-    font-size: 2em;
-    // font-weight: bold;
-  }
 
 }

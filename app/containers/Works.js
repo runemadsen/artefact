@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
+import { Link } from 'react-router'
 
 class Works extends Component {
 
@@ -10,7 +11,9 @@ class Works extends Component {
     return (
       <div>
         <Helmet title="Works" />
-        <p>Works page!</p>
+        <h1>Works</h1>
+        <Link className="button" to="/works/new">New Work</Link>
+        <Link className="button" to="/works/new">New Editioned Work</Link>
       </div>
     )
   }

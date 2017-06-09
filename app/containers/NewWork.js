@@ -18,16 +18,26 @@ class NewWork extends Component {
     super(props);
     this.state = {
       title: undefined,
-      creation_date: undefined,
+      date: undefined,
       artist: undefined,
       medium: undefined,
-      dimensions : undefined,
+      dimensions : {
+        width: undefined,
+        height: undefined,
+        depth: undefined,
+        units: 'in'
+      },
+      dimensions_words: undefined,
+      units: 'in'
       
   };
   }
   handleOnChange(data, name){
-    name = name ? name  : this.name
     console.log('changed %s to %s', name, data )
+    let newState = {}
+    newState[name] = data;
+    this.state = Object.assign({}, this.state, newState)
+    console.log(this.state)
   }
   render() {
     let { work } = this.props
@@ -40,21 +50,17 @@ class NewWork extends Component {
 
         <h1>New Work</h1>
         <form>
-        <Input label="title" name="title" placeholder="Artwork's Title" onChange={handleOnChange}/>
-        <MonthYearPicker label="creation date" name="creation_date" onChange={handleOnChange}/>
-        <Select label="artist" name="artist" placeholder="Artist" onChange={handleOnChange} 
+        <Input label="title" name="title" value={this.state.title} placeholder="Artwork's Title" onChange={handleOnChange.bind(this)}/>
+        <MonthYearPicker label="creation date" value={this.state.date} name="date" onChange={handleOnChange.bind(this)}/>
+        <Select label="artist" name="artist" value={this.state.artist} placeholder="Artist" onChange={handleOnChange.bind(this)} 
           options={makeOptions(["Martin", "Rune", "Alex"])}/>
-        <Select label="medium" name="medium" placeholder="Oil, Metal,..." onChange={handleOnChange}
+        <Select label="medium" name="medium" value={this.state.medium} placeholder="Oil, Metal,..." onChange={handleOnChange.bind(this)}
           creatable={true}  
           options={makeOptions(["Oil", "Metal", "Digital"])}/>
-        <Dimensions label="dimensions" name="dimensions" onChange={handleOnChange} />
-        <Input label="" name="dimensions_words" placeholder="Or describe it in words" onChange={handleOnChange}/>
-        <MultiInput label="Dimensions" fields={[
-          {name: "width", placeholder: "in inches", type: "number", step: "1",  min: "0"},
-          {name: "height", placeholder: "in inches"},
-          {name: "depth", placeholder: "in inches"}
-          ]} onChange={handleOnChange}/>
-          <Toggle name="units" label="units" value="in" options={makeOptions(["in", "cm"])} onChange={handleOnChange} />
+        <Dimensions label="dimensions" value={this.state.dimensions} name="dimensions" onChange={handleOnChange.bind(this)} />
+        <Input label="" name="dimensions_words" value={this.state.dimensions_words} placeholder="Or describe it in words" onChange={handleOnChange.bind(this)}/>
+        
+          <Toggle name="units" label="units" value={this.state.units} options={makeOptions(["in", "cm"])} onChange={handleOnChange.bind(this)} />
         </form>
 
       </div>

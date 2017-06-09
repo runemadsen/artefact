@@ -12,6 +12,10 @@ export default class Toggle extends Component {
       "form_input", 
       "form_toggle", 
       )
+    let optionsClasses = classnames(
+      "form_toggle_options", 
+      `form_toggle_options-${options.length}`
+      )
     return (
       <div className={toggleClass}>
         {label ? <label htmlFor={name}>{label}</label> : null}
@@ -19,7 +23,7 @@ export default class Toggle extends Component {
           type="hidden"
           name={name} 
           value={value} />
-          <div className="form_toggle_options">
+          <div className={optionsClasses}>
             {options.map( (option, index)=>{
               return (<div 
                 id={option.value}

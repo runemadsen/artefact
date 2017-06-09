@@ -6,6 +6,8 @@ import Helmet from 'react-helmet'
 import Navigation from '../components/Navigation'
 import SignUp from './SignUp'
 import SignIn from './SignIn'
+import InitialSetup from './InitialSetup'
+
 import { signUp, signIn } from '../actions/auth'
 
 class Home extends Component {
@@ -16,7 +18,7 @@ class Home extends Component {
         <Helmet title="Home" />
         <div className="container">
           { this.props.loggedIn ?
-            <p>You are logged in</p>
+            <InitialSetup />
             :
             <div>
               <SignUp onSignUp={this.props.onSignUp} />
