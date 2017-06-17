@@ -1,11 +1,15 @@
 .form_toggle {
   border-bottom: $border;
-
+}
+.form_input .form_toggle {
+  border-bottom: none !important;
 }
 .form_toggle_options {
   position: relative;
-  padding-left: $label-width;
   background-color: $color-background-light;
+}
+.form_input_with_label > .form_toggle_options{
+  padding-left: $label-width;
 }
 
 .form_toggle_option {
@@ -16,18 +20,34 @@
   height: 38px;
   line-height: 38px;
   text-align: center;
-  border-bottom: $border;
   margin-bottom: -2px;
-  &.is-selected {
-    background-color: $color-highlight;
-    border-bottom-color: $color-highlight;
+  &:before {
+      content: " ";
+      position: absolute;
+      z-index: 1;
+      width: 0;
+      top: 0;
+      height: 100%;
+      background-color: $color-highlight;
+      border-bottom-color: $color-highlight;
+      transition: width .2s ease;
   }
-  &.selector{
-    position: absolute;
-    z-index: 9;
-    width: 50%;
-    height: 38px;
-    background-color: $color-highlight;
-    border-bottom-color: $color-highlight;   
+  &:first-child:before{right: 0;}
+  &:last-child:before{left: 0;}
+  &_selected:before {
+    width: 100%;
   }
+}
+.form_toggle_option_input {display: none;}
+label.form_toggle_option_label {
+  width: 100%;
+  position: relative;
+  z-index: 100;
+  display: block;
+  padding: 0;
+  height: 100%;
+  max-width: none;
+  text-align: center;
+  // background-color: gray;
+
 }

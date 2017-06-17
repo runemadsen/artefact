@@ -1,6 +1,22 @@
 .page-works {  
-  .actions{
-    text-align: right;
+  .toolbar_horizontal{
+    position: relative;
     margin: 2em 0;
+    &:after {
+      content: " ";
+      display: table;
+      height: 0;
+      clear: both;
+    }
+    .actions, .Searchbar{
+      float: left;
+    }
+    .Searchbar{
+      width: 60%;
+    }
+    .actions {
+      width: 40%;
+      text-align: right;
+    }
   }
 }

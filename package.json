@@ -47,6 +47,7 @@
     "run-sequence": "^1.2.2",
     "squel": "^5.8.0",
     "superagent": "^1.4.0",
+    "uuid": "^3.1.0",
     "webpack-dev-server": "^2.4.2"
   },
   "devDependencies": {

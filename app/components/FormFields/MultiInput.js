@@ -15,11 +15,12 @@ export default class MultiInput extends Component {
       "form_input_multi", 
       "form_input",
       `form_input_multi_${this.props.fields.length}`,
+      {"form_input_with_label": label },
       )
     return (
       <div className={classes}>
-        <label>{label}</label>
-        {
+        {label ? <label>{label}</label> : null}
+        <div className="form_input_group">{
           fields.map((f, i)=>{
             return (<input 
               className={`input-split-${this.props.fields.length}`}
@@ -34,6 +35,7 @@ export default class MultiInput extends Component {
               />)
           })
         }
+        </div>
       </div>
     )
   }

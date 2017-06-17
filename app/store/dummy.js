@@ -1,19 +1,21 @@
 import _ from 'lodash'
 import {fromJS} from 'immutable'
+import uuid from 'uuid'
 
 export let emptyWork = fromJS({
-    title: undefined,
-    date: undefined,
-    artist: undefined,
-    medium: undefined,
+    id: uuid.v4(),
+    title: "",
+    date: "",
+    artist: "",
+    medium: "",
     dimensions : {
-      width: undefined,
-      height: 10,
-      depth: undefined,
+      width: "",
+      height: "",
+      depth: "",
       units: 'in'
     },
-    dimensions_words: undefined,
-    units: 'in'
+    dimensions_words: "",
+    editioned: false
   });
 
 export let work = {
@@ -43,7 +45,8 @@ export function generateWorks(n = 10){
   for (var i = 0; i < n; i++) {
     let w = _.cloneDeep(work)
     // w.artist.name = _.sample(['Rune Madsen', 'Johnny Lu', 'Alex Dodge', 'Ezer Longinus'])
-    w.title = _.sample(['Dead Dog', 'Funny Cat', 'Jumping the hoop', 'Evening with Rose'])
+    w.id = uuid.v4()
+    w.title = _.sample(['Dead Dog', 'Funny Cat', 'Jumping through the hoop', 'Evening with Rose'])
     w.dimensions.width = _.sample([10,20,100,43])
     w.dimensions.height = _.sample([19,20,100,43])
     let d = _.sample(['January 10, 2017', 'March 20, 2010', 'April 4, 2014', 'September 22, 1920'])

@@ -13,7 +13,8 @@ export default class Input extends Component {
       "form_input", 
       { [`form_input_${type}`] : type,
         [`form_input_${size}`] : size
-     })
+     },
+     {"form_input_with_label": label })
     return (
       <div className={inputClass}>
         <label htmlFor={name}>{label}</label>

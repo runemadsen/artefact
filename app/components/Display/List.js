@@ -7,7 +7,7 @@ class List extends Component {
     return (
       <div className='list'>
         {this.props.works.map((w,i)=>{
-          return <ListItem ref={`work-${i}`} work={w} />
+          return <ListItem key={`work-${i}`} work={w} />
         })}
       </div>
     )

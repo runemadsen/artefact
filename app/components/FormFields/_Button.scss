@@ -1,4 +1,5 @@
 .button {
+  display: inline-block;
   font-size: $font-size-medium;
   padding: .25em .75em;
   border: $border;
@@ -9,5 +10,8 @@
   &:hover {
     background-color: $color-highlight;
   }
-  
+  &.button_small {
+    font-size: $font-size-normal;
+    padding: .2em .5em;
+  } 
 }

@@ -23,23 +23,28 @@
     font-size: $font-size-medium;
     outline: none;
     border: none;
-    padding-left: $label-width;
-    border-bottom: $border;
     height: 38px;
+    border-bottom: $border;
     &:focus {
       border-bottom-color: $color-highlight;
     }
-    @for $i from 2 to 5 {
-      &.input-split-#{$i} {
-        width: calc( ( ( 100% - #{$label-width} ) / #{$i} ) - 1px);
-        float: left;
-        &:not(:nth-child(2)){
-          padding-left: 0;
-        }
-        &:nth-child(2){
-          width: calc( ( 100% - #{$label-width} ) / #{$i} + #{$label-width});
-        }
-      }
+  }
+  > input, .form_input_group{
+    border-bottom: $border;
+    height:38px;
+    width: 100%;
+  }
+  &.form_input_with_label{
+    > input, .form_input_group{
+      padding-left: $label-width;
     }
-  }  
+  }
+  
+  
+  @for $i from 2 to 5 {
+    .input-split-#{$i} {
+      width: calc( ( ( 100% ) / #{$i} ) - 1px);
+      float: left;
+    }
+  }
 }

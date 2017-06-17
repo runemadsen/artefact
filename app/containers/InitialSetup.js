@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 
 import Input from '../components/FormFields/Input'
 import Select from '../components/FormFields/Select'
-import Status from '../components/Atoms/Status'
+import Status from '../components/Elements/Status'
 
 import {makeOptions} from '../helpers'
 
@@ -41,7 +41,6 @@ class InitialSetup extends Component {
       <div>
         <Helmet title="Set up your account" />
         <h1>Initial Setup</h1>
-        <p>Your profile info is also the first person in your people list.</p>
         <form>
           <Status status="saved" />
           <Input label="name" name="name" value={this.state.name} name="name" onChange={this.handleOnChange}/>

@@ -15,7 +15,6 @@ export default class MonthYearPicker extends Component {
     
     let {label, name, value, options} = this.props    
     let today = new Date()
-    console.log(value)
     this.date = typeof value !== "undefined" ? new Date(value) : new Date()
     let selectClass = classnames(
       "form_monthYearPicker", 

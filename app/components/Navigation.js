@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 
 import Artefact from '../components/Artefact'
-import NavLink from '../components/Atoms/NavLink'
+import NavLink from '../components/Elements/NavLink'
 
 class Navigation extends Component {
 
